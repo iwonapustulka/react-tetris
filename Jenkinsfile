@@ -2,6 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Build') {
+		
             steps {
                 git url: 'https://github.com/iwonapustulka/react-tetris'
                 sh 'npm install'
@@ -10,14 +11,22 @@ pipeline {
 
             post {
                 failure {
-                    echo 'blad budowania'    
+                    script {
+                        env.FAILED = true
+                    }  
+
+                    mail to: 'iwonapustulka@gmail.com',
+                        subject: "Failure on building ${currentBuild.fullDisplayName}",
+                        body: "Failure on building ${env.BUILD_URL} "      
+
                 }
-                success {
-                    echo 'sukces budowania'
+		    success {
+			mail to: 'iwonapustulka@gmail.com',
+                        subject: "Success on building ${currentBuild.fullDisplayName}",
+                        body: "Success on building ${env.BUILD_URL} " 
                 }
             }
         }
-		
         stage('Test') {
              steps {
                  script {
@@ -31,24 +40,32 @@ pipeline {
             }
             post {
                 failure {
-                    echo 'blad testow'     
+                     mail to: 'iwonapustulka@gmail.com',
+                        subject: "Failure on testing ${currentBuild.fullDisplayName}",
+                        body: "Failure on testing ${env.BUILD_URL} "    
                 }
                 success {
-                    echo 'sukces testow'
+                    mail to: 'iwonapustulka@gmail.com',
+                        subject: "Success on testing ${currentBuild.fullDisplayName}",
+                        body: "Success on testing ${env.BUILD_URL} "    
                 }
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker build -t tetrisgame -f Dockerfile .'
-                sh 'docker run tetrisgame'
+                sh 'docker build -t tetrisimage -f Dockerfile .'
+                sh 'docker run tetrisimage'
                 }
                 post {
                     failure {
-                         echo 'blad wdrozenia'    
+                        mail to: 'iwonapustulkay@gmail.com',
+                            subject: "Failure deploy: ${currentBuild.fullDisplayName}",
+                            body: "Failure deploy ${env.BUILD_URL} "         
                     }
                     success {
-                        echo 'sukces wdrozenia'                       
+                        mail to: 'iwonapustulka@gmail.com',
+                            subject: "Success deploy: ${currentBuild.fullDisplayName}",
+                            body: "Success deploy ${env.BUILD_URL} "                        
                     }
                 }
         }
