@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url: 'https://github.com/iwonapustulka/react-tetris'
+                git url: 'https://github.com/iwonapustulka/react-tetris.git'
                 sh 'npm install'
                 sh 'git pull origin master'
             }
