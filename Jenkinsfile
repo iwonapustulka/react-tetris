@@ -32,14 +32,7 @@ pipeline {
         }
         stage('Test') {
              steps {
-                 script {
-                    if ( env.FAILED ) {
-                    expression {
-                        currentBuild.result = 'ABORTED'
-                        error('Failed on build stage!')
-                        }
-                    }
-                }
+                 sh 'npm run test'
             }
             post {
                 failure {
