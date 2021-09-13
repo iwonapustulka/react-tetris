@@ -7,7 +7,7 @@ pipeline {
             steps {
 		sh 'rm -rf react-tetris'
                 sh 'git clone https://github.com/chvin/react-tetris.git'
-		cd 'react-tetris'
+		sh 'cd react-tetris'
 		withNPM(npmrcConfig: '876d69e2-718f-4ac3-87ea-5ba59d53c060'){
 		sh 'npm install'
 		}
