@@ -16,10 +16,7 @@ pipeline {
 
             post {
                 failure {
-                    script {
-                        env.FAILED = true
-                    }  
-
+                    
                     mail to: 'iwonapustulka@gmail.com',
                         subject: "Blad budowania",
                         body: "blad ${env.BUILD_URL} "      
