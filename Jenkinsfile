@@ -5,7 +5,7 @@ pipeline {
 		
             steps {
                 git url: 'https://github.com/iwonapustulka/react-tetris'
-                bat 'npm install'
+                bat 'call npm install'
                 bat 'git pull origin master'
             }
 
