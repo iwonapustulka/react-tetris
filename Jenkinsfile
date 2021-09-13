@@ -1,12 +1,14 @@
 pipeline {
     agent any
+	tools {nodejs "nodejs"}
     stages {
         stage('Build') {
 		
             steps {
+		sh 'rm -rf react-tetris'
                 sh 'git clone https://github.com/iwonapustulka/react-tetris'
 		sh 'cd react-tetris'
-		withNPM(npmrcConfig: '6c78e79e-2b95-48d5-8ce5-40bcc985cc20'){
+		withNPM(npmrcConfig: '87b576b2-39af-47b4-bf8b-76ce74e0591b'){
 		sh 'npm install'
 		}
 		sh 'npm run build'
