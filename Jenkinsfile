@@ -1,6 +1,6 @@
 pipeline {
     agent any
-	tools {nodejs "nodejs"}
+    tools {nodejs "nodejs"}
     stages {
         stage('Build') {
 		
@@ -21,13 +21,13 @@ pipeline {
                     }  
 
                     mail to: 'iwonapustulka@gmail.com',
-                        subject: "Failure on building ${currentBuild.fullDisplayName}",
+                        subject: "Blad budowania",
                         body: "Failure on building ${env.BUILD_URL} "      
 
                 }
 		    success {
 			mail to: 'iwonapustulka@gmail.com',
-                        subject: "Success on building ${currentBuild.fullDisplayName}",
+                        subject: "Sukces budowania",
                         body: "Success on building ${env.BUILD_URL} " 
                 }
             }
@@ -46,13 +46,13 @@ pipeline {
             post {
                 failure {
                      mail to: 'iwonapustulka@gmail.com',
-                        subject: "Failure on testing ${currentBuild.fullDisplayName}",
-                        body: "Failure on testing ${env.BUILD_URL} "    
+                        subject: "Blad testowania",
+                        body: "blad ${env.BUILD_URL} "    
                 }
                 success {
                     mail to: 'iwonapustulka@gmail.com',
-                        subject: "Success on testing ${currentBuild.fullDisplayName}",
-                        body: "Success on testing ${env.BUILD_URL} "    
+                        subject: "Sukces testowania",
+                        body: "sukces ${env.BUILD_URL} "    
                 }
             }
         }
@@ -64,13 +64,13 @@ pipeline {
                 post {
                     failure {
                         mail to: 'iwonapustulkay@gmail.com',
-                            subject: "Failure deploy: ${currentBuild.fullDisplayName}",
-                            body: "Failure deploy ${env.BUILD_URL} "         
+                            subject: "Blad wdrozenia",
+                            body: "blad ${env.BUILD_URL} "         
                     }
                     success {
                         mail to: 'iwonapustulka@gmail.com',
-                            subject: "Success deploy: ${currentBuild.fullDisplayName}",
-                            body: "Success deploy ${env.BUILD_URL} "                        
+                            subject: "Sukces wdrozenia",
+                            body: "sukces ${env.BUILD_URL} "                        
                     }
                 }
         }
