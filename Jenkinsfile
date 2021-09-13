@@ -5,8 +5,8 @@ pipeline {
 		
             steps {
                 git url: 'https://github.com/iwonapustulka/react-tetris'
-                sh 'npm install'
-                sh 'git pull origin master'
+                bat 'npm install'
+                bat 'git pull origin master'
             }
 
             post {
@@ -53,8 +53,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker build -t tetrisimage -f Dockerfile .'
-                sh 'docker run tetrisimage'
+                bat 'docker build -t tetrisimage -f Dockerfile .'
+                bat 'docker run tetrisimage'
                 }
                 post {
                     failure {
