@@ -22,13 +22,13 @@ pipeline {
 
                     mail to: 'iwonapustulka@gmail.com',
                         subject: "Blad budowania",
-                        body: "Failure on building ${env.BUILD_URL} "      
+                        body: "blad ${env.BUILD_URL} "      
 
                 }
 		    success {
 			mail to: 'iwonapustulka@gmail.com',
                         subject: "Sukces budowania",
-                        body: "Success on building ${env.BUILD_URL} " 
+                        body: "sukces ${env.BUILD_URL} " 
                 }
             }
         }
