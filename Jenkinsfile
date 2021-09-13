@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
 		
             steps {
-		sh 'rm -rf react-tetris'
                 sh 'git clone https://github.com/iwonapustulka/react-tetris.git'
 		withNPM(npmrcConfig: '87b576b2-39af-47b4-bf8b-76ce74e0591b'){
 		sh 'npm install'
