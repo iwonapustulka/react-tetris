@@ -56,12 +56,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat 'docker build -t tetrisimage -f Dockerfile .'
-                bat 'docker run tetrisimage'
+                sh 'docker build -t tetrisimage -f Dockerfile .'
+                sh 'docker run tetrisimage'
                 }
                 post {
                     failure {
-                        mail to: 'iwonapustulkay@gmail.com',
+                        mail to: 'iwonapustulka@gmail.com',
                             subject: "Blad wdrozenia",
                             body: "blad ${env.BUILD_URL} "         
                     }
