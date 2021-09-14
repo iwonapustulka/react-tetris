@@ -37,7 +37,7 @@ pipeline {
                     if ( env.FAILED ) {
                     expression {
                         currentBuild.result = 'ABORTED'
-                        error('Failed on build stage!')
+                        error('blad!')
                         }
                     }
                 }
