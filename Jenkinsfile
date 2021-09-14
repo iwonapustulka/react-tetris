@@ -33,7 +33,7 @@ pipeline {
         stage('Test') {
              steps {
 		 echo 'testowanko'
-                 sh 'npm test'
+                 sh 'npm run'
             }
             post {
                 failure {
