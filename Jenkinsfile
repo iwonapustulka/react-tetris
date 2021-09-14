@@ -2,6 +2,10 @@ pipeline {
     agent any
     tools {nodejs "nodejs"}
     stages {
+	 stage('Initialize'){
+        def dockerHome = tool 'docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
         stage('Build') {
 		
             steps {
