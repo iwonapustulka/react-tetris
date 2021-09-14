@@ -33,7 +33,14 @@ pipeline {
         stage('Test') {
              steps {
 		 echo 'testowanko'
-                 sh 'npm run test'
+                 script {
+                    if ( env.FAILED ) {
+                    expression {
+                        currentBuild.result = 'ABORTED'
+                        error('Failed on build stage!')
+                        }
+                    }
+                }
             }
             post {
                 failure {
